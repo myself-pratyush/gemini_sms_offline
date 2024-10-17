@@ -55,7 +55,7 @@ def sms_reply():
     # Use Twilio to send the response message back to the sender
     client.messages.create(
         body=last_message,  # The AI-generated reply
-        from_='+13344893603',  # Replace with your Twilio number
+        messaging_service_sid='MGf4e3c8c0316fd0450b323f3bfba6d790',  # Replace with your Twilio number
         to=last_sender_number  # Send it back to the original sender
     )
 
