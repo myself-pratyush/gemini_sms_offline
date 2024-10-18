@@ -5,7 +5,7 @@ from dotenv import load_dotenv
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client
 from flask import Flask, request, render_template_string
-from pyngrok import ngrok, conf
+# from pyngrok import ngrok, conf
 import os
 
 load_dotenv()
@@ -17,7 +17,7 @@ app = Flask(__name__)
 # twilio_auth_token = userdata.get('TWILIO_AUTH_TOKEN')
 # genai.configure(api_key=userdata.get('API_KEY'))
 
-conf.get_default().auth_token = os.environ["ngrok_AUTH_TOKEN"]
+# conf.get_default().auth_token = os.environ["ngrok_AUTH_TOKEN"]
 twilio_account_sid = os.environ["TWILIO_ACCOUNT_SID"]
 twilio_auth_token = os.environ["TWILIO_AUTH_TOKEN"]
 genai.configure(api_key=os.environ["API_KEY"])
@@ -76,8 +76,9 @@ def homepage():
 
 
 # Reserve a subdomain on ngrok
-public_url = ngrok.connect(5000)
-print(f"Public URL: {public_url}")
+# public_url = ngrok.connect(5000)
+# print(f"Public URL: {public_url}")
 
 if __name__ == "__main__":
-    app.run()
+    port = int(os.environ.get("PORT", 5000))
+    app.run(host="0.0.0.0", port=port)
